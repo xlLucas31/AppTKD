@@ -2,14 +2,14 @@ import React, { useCallback, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, Alert, Pressable } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
-import type { RootDrawerParamList } from '../../../App';
-import { useTurnosDetalle } from '../turnosDetalle/useTurnosDetalle';
+import { useTurnosDetalle } from '../features/hooks/turnosDetalle/useTurnosDetalle';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TurnosStackParamList } from '../navigation/types';
 
-type R = RouteProp<RootDrawerParamList, 'MenuTurnosDetalle'>;
+type Props = NativeStackScreenProps<TurnosStackParamList, 'TurnoConfiguracion'>;
 
-export default function MenuTurnosDetalleScreen() {
-  const navigation = useNavigation();
-  const { params } = useRoute<R>(); // { id, label }
+export default function TurnoConfiguracion({ navigation, route }: Props) {
+  const { params } = route;
   const { eliminar } = useTurnosDetalle(params.id);
 
   const handleDelete = useCallback(() => {
@@ -50,6 +50,11 @@ export default function MenuTurnosDetalleScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>{params.label}</Text>
       <Text>ID: {params.id}</Text>
+      <Pressable onPress={() => navigation.navigate('ClasesTabs',{
+        screen: 'ClaseEjercicio'
+      })} style={{ marginTop: 16, padding: 12, backgroundColor: '#F87171', borderRadius: 6 }}>
+        <Text style={{ color: 'white', fontWeight: '600' }}>Ver clases</Text>
+      </Pressable>
       {/* más contenido del detalle... */}
     </View>
   );

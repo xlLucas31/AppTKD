@@ -1,4 +1,4 @@
-import { getDB } from '../../db/db';
+import { getDB } from '../../../db/db';
 
 export type Alumno = { ID_Alumno: number; Nombre: string; ID_Graduacion: number | null; estado: 1 | 0 };
 

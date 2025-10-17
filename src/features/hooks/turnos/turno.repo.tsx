@@ -1,4 +1,4 @@
-import { getDB } from '../../db/db';
+import { getDB } from '../../../db/db';
 
 export type Turno = { id: number; nombre: string; descripcion?: string | null };
 

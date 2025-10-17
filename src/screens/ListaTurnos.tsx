@@ -3,12 +3,13 @@ import {
   View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, StyleSheet, KeyboardAvoidingView, Platform
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import type { DrawerNavigationProp } from '@react-navigation/drawer';
-import type { RootDrawerParamList } from '../../../App';
-import { useTurnos } from './useTurnos';
+import { useTurnos } from '../features/hooks/turnos/useTurnos';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TurnosStackParamList } from '../navigation/types';
 
-export default function ListaTurnosScreen() {
-  const navigation = useNavigation<DrawerNavigationProp<RootDrawerParamList, 'Turnos'>>();
+type Props = NativeStackScreenProps<TurnosStackParamList, 'ListaTurnos'>;
+
+export default function ListaTurnos({navigation}: Props) {
   const { turnos, loading, add } = useTurnos();
   const [input, setInput] = useState('');
 
@@ -49,7 +50,7 @@ export default function ListaTurnosScreen() {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.item}
-            onPress={() => navigation.navigate('MenuTurnosDetalle', { id: item.id, label: item.nombre })}
+            onPress={() => navigation.navigate('TurnoConfiguracion', { id: item.id, label: item.nombre })}
           >
             <Text style={styles.itemText}>{item.nombre}</Text>
           </TouchableOpacity>

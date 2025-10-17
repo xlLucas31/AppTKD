@@ -2,11 +2,11 @@
 import React, { useLayoutEffect, useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Pressable, Alert, Modal, TextInput } from 'react-native';
-import { useAlumnos } from '../alumnos/useAlumnos';
+import { useAlumnos } from '../features/hooks/alumnos/useAlumnos';
 import { MaterialIcons } from '@expo/vector-icons';
-import { addAlumno } from '../alumnos/alumno.repo';
+import { addAlumno } from '../features/hooks/alumnos/alumno.repo';
 
-export default function ListaAlumnosScreen() {
+export default function ListaAlumnos() {
   const { data, loading, error, refresh } = useAlumnos();
   const navigation = useNavigation();
 

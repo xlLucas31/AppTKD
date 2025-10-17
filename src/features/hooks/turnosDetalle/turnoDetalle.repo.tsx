@@ -1,4 +1,4 @@
-import { getDB } from '../../db/db';
+import { getDB } from '../../../db/db';
 
 export type Clase = {
   id: number;
