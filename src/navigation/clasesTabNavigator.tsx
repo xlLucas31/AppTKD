@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ClaseEjercicio from '../features/clases/claseEjercicios';
-import ClaseLista from '../features/clases/claseLista';
-import ClaseConfiguracion from '../features/clases/claseConfiguracion';
+import ClaseEjercicio from '../screens/claseEjercicios';
+import ClaseLista from '../screens/claseAsistencia';
+import ClaseConfiguracion from '../screens/claseConfiguracion';
 import { ClasesTabParamList } from './types';
 
 const Tab = createBottomTabNavigator<ClasesTabParamList>();
