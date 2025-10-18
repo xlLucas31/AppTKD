@@ -17,6 +17,7 @@ export default function TurnosStackNavigator() {
             <Stack.Screen name="ListaTurnos" component={TurnosScreen} />
             <Stack.Screen name="TurnoConfiguracion" component={TurnoConfiguracion} />
             <Stack.Screen name="ClasesTabs" component={ClaseTabNavigator} />
+        
         </Stack.Navigator>
     );
 }

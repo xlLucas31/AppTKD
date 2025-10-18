@@ -31,6 +31,7 @@ export async function addClase(turnoId: number, label: string, fecha?: string) {
   const params = fecha ? [turnoId, label, fecha] : [turnoId, label];
 
   const res = await db.runAsync(sql, params);
+  console.log('Clase creada con ID:', res.lastInsertRowId);
   return {
     id: res.lastInsertRowId as number,
     turnoId,

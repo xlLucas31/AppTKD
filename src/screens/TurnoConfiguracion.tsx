@@ -1,16 +1,19 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, Alert, Pressable } from 'react-native';
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTurnosDetalle } from '../features/hooks/turnosDetalle/useTurnosDetalle';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TurnosStackParamList } from '../navigation/types';
+
+import CrearClase from './crearClase';
+import {useModalCrearClase} from '../features/hooks/useModalCrearClase';
 
 type Props = NativeStackScreenProps<TurnosStackParamList, 'TurnoConfiguracion'>;
 
 export default function TurnoConfiguracion({ navigation, route }: Props) {
   const { params } = route;
   const { eliminar } = useTurnosDetalle(params.id);
+  const { visible, open, close, onSubmit } = useModalCrearClase();
 
   const handleDelete = useCallback(() => {
     Alert.alert(
@@ -49,13 +52,10 @@ export default function TurnoConfiguracion({ navigation, route }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{params.label}</Text>
-      <Text>ID: {params.id}</Text>
-      <Pressable onPress={() => navigation.navigate('ClasesTabs',{
-        screen: 'ClaseEjercicio'
-      })} style={{ marginTop: 16, padding: 12, backgroundColor: '#F87171', borderRadius: 6 }}>
-        <Text style={{ color: 'white', fontWeight: '600' }}>Ver clases</Text>
+      <Pressable onPress={open}>
+        <Text style={{fontWeight: '600' }}>Crear clase</Text>
       </Pressable>
-      {/* más contenido del detalle... */}
+      <CrearClase visible={visible} turnoId={params.id} onClose={close} onSubmit={onSubmit} />
     </View>
   );
 }
